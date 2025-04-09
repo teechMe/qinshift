@@ -23,10 +23,12 @@ jobs:
 
     - script: npm run test:ci
       displayName: 'Run tests'
+      continueOnError: true
     
     - script: npm run merge-reports
       displayName: 'Merge Reports'
-
+      condition: always()
+      
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'

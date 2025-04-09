@@ -11,10 +11,18 @@ There are 3 ways to run tests:
 2. `npx cypress run --spec cypress\e2e\*.cy.js` which will run all tests in a command line (headless)
 3. Create new pipeline in Azure Devops using azure-pipelines.yml and run it
 
+## Test Reports
+There are several reports in this framowork:
+1. after local run - in terminal
+2. after run on CI/CD - in Azure Devops (by using xml output)
+3. screenshots from failed tests
+
 ## What's where?
 - e2e/ - location of spec file
 - e2e/pages/ - location of page class files with locators and functions
 - fixtures/ - location of credentials and user data files
+- results/ - location of .xml report files after execution
+- screenshots/ - location of printscreens created by failed tests
 - support/loginHelper - method for login handling
 - support/merge-reports.js - method for reports merge handling
 
@@ -25,7 +33,7 @@ graph TD
     A[Tests] -->|Interacts with| B[Page Objects]
     B -->|Uses| C[Locators]
     B -->|Consumes| D[Test Data]
-    A -->|Generates| E[Mochawesome Reports]
+    A -->|Generates| E[JUnit Reports]
     E -->|Feeds| F[Azure DevOps Pipeline]
 ```
 
